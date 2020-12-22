@@ -1,0 +1,11 @@
+{
+  "name": "wile",
+  "version": "1.0.0",
+  "description": "My website :)",
+  "main": "index.js",
+  "author": "Kaeden Wile",
+  "license": "MIT",
+  "dependencies": {
+    "commonjs": "0.0.1"
+  }
+}
