@@ -7,10 +7,6 @@ html, body {
   background-color: black;
 }
 
-#battlefield {
-
-}
-
 #website {
   background: transparent;
   position: absolute;
@@ -29,7 +25,19 @@ html, body {
   font-family: 'Source Code Pro', monospace;
 
   h1 {
-    text-align: center;
+    margin: 1rem 1rem -2rem 1rem;
+    //text-align: center;
+  }
+
+  #links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    a {
+      margin: 1rem;
+      color: white;
+    }
   }
 
   #copyright {

@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
+        "outDir": "./dist/",
         "target": "es2015",
-        "sourceMap": true
+        "module": "es6",
+        "sourceMap": true,
+        "moduleResolution": "Node"
     },
     "exclude": [
         "node_modules"
