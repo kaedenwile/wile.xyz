@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Code+Pro:wght@600&display=swap');
 
 html, body {
   padding: 0;
@@ -29,14 +29,38 @@ html, body {
     //text-align: center;
   }
 
-  #links {
+  #body {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
 
-    a {
-      margin: 1rem;
-      color: white;
+    #links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      a {
+        cursor: pointer;
+        margin: 1rem;
+        color: white;
+
+        &.active {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .content {
+      display: none;
+      margin: 0 20%;
+      flex-grow: 1;
+
+      font-family: 'Lato', sans-serif;
+
+      a {
+        color: white;
+        background-color: #77777777;
+      }
     }
   }
 
