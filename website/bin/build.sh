@@ -10,3 +10,4 @@ sass style:public/style
 
 # Compile JS
 npm run build
+cp -r dist public/dist
