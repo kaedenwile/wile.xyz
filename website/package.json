@@ -4,7 +4,9 @@
   "description": "My website :)",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "clean": "rm -rf public",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "author": "Kaeden Wile",
   "license": "MIT",
