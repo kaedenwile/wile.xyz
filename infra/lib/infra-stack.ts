@@ -24,7 +24,10 @@ export class InfraStack extends cdk.Stack {
     let websiteCert = acm.Certificate.fromCertificateArn(this, 'websiteCert','arn:aws:acm:us-east-1:745658675557:certificate/ff7ac770-3f08-4896-8831-38495304a758');
 
     let websiteDistribution = new cloudfront.Distribution(this, 'websiteDistribution', {
-      defaultBehavior: { origin: new origins.S3Origin(websiteBucket) },
+      defaultBehavior: {
+        origin: new origins.S3Origin(websiteBucket),
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+      },
       domainNames: ['wile.xyz'],
       certificate: websiteCert
     });
