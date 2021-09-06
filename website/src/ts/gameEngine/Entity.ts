@@ -32,9 +32,9 @@ export class Entity {
 
     bounds(): {left: number, right: number, top: number, bottom: number} {
         let {x, y, w, h} = this;
-        if (isNaN(x) || isNaN(y) || isNaN(w) || isNaN(h)) {
-            console.log(`${JSON.stringify(this)} ${JSON.stringify(x)} ${JSON.stringify(y)} ${JSON.stringify(w)} ${JSON.stringify(h)}`);
-        }
+        // if (isNaN(x) || isNaN(y) || isNaN(w) || isNaN(h)) {
+        //     console.log(`${JSON.stringify(this)} ${JSON.stringify(x)} ${JSON.stringify(y)} ${JSON.stringify(w)} ${JSON.stringify(h)}`);
+        // }
 
         return {
             left: x - w/2,

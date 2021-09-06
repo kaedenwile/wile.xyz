@@ -74,10 +74,6 @@ export class Fighter extends Entity {
 
         this.health -= damage;
         if (this.health <= 0) {
-            console.log("DIED");
-            let err = new Error();
-            console.error(err.stack);
-
             this.isDead = true;
             this.battlefield.entities.delete(this);
             this.battlefield.fighters.delete(this);

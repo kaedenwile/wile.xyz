@@ -37,7 +37,7 @@ class Battlefield extends GameEngine {
         let fighter = new (pick([
             StandardFighter,
             SniperFighter,
-            MeleeFighter,
+            // MeleeFighter,
             HeavyFighter,
             MedicFighter
         ]))(this, team, team === 'red' ? 25 : this.canvas.width - 25, Math.random() * this.canvas.height);
@@ -51,12 +51,10 @@ class Battlefield extends GameEngine {
             if (entity1.team === entity2.team) return;
 
             if (entity1 instanceof MeleeFighter) {
-                console.log(`MELEE ${JSON.stringify(entity1.bounds())}`);
                 entity2.takeDamage(2.5)
             }
 
             if (entity2 instanceof MeleeFighter) {
-                console.log(`MELEE ${JSON.stringify(entity2.bounds())}`);
                 entity1.takeDamage(2.5);
             }
         } else if (entity1 instanceof Fighter && entity2 instanceof Bullet) {

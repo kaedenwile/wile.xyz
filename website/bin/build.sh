@@ -17,4 +17,4 @@ sass src/style:public/style
 
 # Compile JS
 npm run build
-cp -r src/js public/js
+cp -r src/js public

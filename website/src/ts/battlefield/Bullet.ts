@@ -34,7 +34,6 @@ export class Bullet extends Entity {
     }
 
     didHitFighter(fighter: Fighter) {
-        console.log(typeof this);
         if (fighter.team !== this.team) {
             fighter.takeDamage(this.damage);
             this.battlefield.entities.delete(this);
