@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Code+Pro:wght@600&display=swap');
 
+$gray: #77777777;
+
 html, body {
   padding: 0;
   margin: 0;
@@ -42,14 +44,20 @@ html, body {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
 
       a {
         cursor: pointer;
         margin: 1rem;
         color: white;
+        text-decoration: none;
 
         &.active {
           text-decoration: underline;
+        }
+
+        &:hover {
+          background-color: $gray;
         }
       }
     }
@@ -67,7 +75,7 @@ html, body {
 
       a {
         color: white;
-        background-color: #77777777;
+        background-color: $gray;
       }
     }
   }
