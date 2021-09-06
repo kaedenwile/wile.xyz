@@ -15,7 +15,7 @@ export class StandardFighter extends Fighter {
     }
 
     fireWeapon(): Bullet {
-        return new Bullet(this.battlefield, this, this.angleTo(this.getNearestEnemy()), 1.0);
+        return new Bullet(this.battlefield, this, this.angleToIntercept(this.getNearestEnemy(), Bullet.SPEED), 1.0);
     }
 
 }

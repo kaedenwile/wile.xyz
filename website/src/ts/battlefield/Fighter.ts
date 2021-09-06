@@ -19,6 +19,7 @@ export class Fighter extends Entity {
 
     maxHealth: number = 5.0;
     health: number = 5.0;
+    isDead: boolean = false;
 
     constructor(battlefield: Battlefield, team: Team, x: number, y: number, coolDown: number) {
         super(x, y, 10, 10, 1);
@@ -69,8 +70,15 @@ export class Fighter extends Entity {
     }
 
     takeDamage(damage: number) {
+        if (this.isDead) return;
+
         this.health -= damage;
         if (this.health <= 0) {
+            console.log("DIED");
+            let err = new Error();
+            console.error(err.stack);
+
+            this.isDead = true;
             this.battlefield.entities.delete(this);
             this.battlefield.fighters.delete(this);
             this.battlefield.spawnFighter(this.team);
@@ -90,6 +98,26 @@ export class Fighter extends Entity {
 
     getNearestEnemy(): Fighter {
         return this.getNearest(fighter => fighter.team !== this.team);
+    }
+
+    angleToIntercept(target: Fighter, speed: number): number {
+        // calculate angle to intersect target at their current velocity
+
+        let {x: x1, y: y1} = this;
+        let {x: x2, y: y2} = target;
+
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+
+        let {vx: vx2, vy: vy2} = target.velocity();
+        let v1 = speed;
+        let v2 = Math.sqrt(vx2**2 + vy2**2);
+        let a2 = Math.atan2(vy2, vx2);
+
+        let alpha = Math.atan2(-dx, dy);
+        let l = Math.sqrt(dx**2 + dy**2);
+
+        return alpha + Math.acos(v2 / v1 * (dy * Math.cos(a2) - dx * Math.sin(a2)) / l)
     }
 
 }

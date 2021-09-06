@@ -20,7 +20,7 @@ export class MedicFighter extends Fighter {
         let target = this.getNearestInjuredFriendly();
 
         if (target && this.distanceTo(target) < 100) {
-            return new MedPack(this.battlefield, this, this.angleTo(target));
+            return new MedPack(this.battlefield, this, this.angleToIntercept(target, MedPack.SPEED));
         } else {
             this.coolDown += 0.1;
             return null;

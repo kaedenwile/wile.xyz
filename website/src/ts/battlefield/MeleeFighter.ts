@@ -13,7 +13,10 @@ export class MeleeFighter extends Fighter {
     update(dt: number) {
         super.update(dt);
 
-        this.navigate(dt, this.angleTo(this.getNearestEnemy()))
+        let {vx, vy} = this.velocity();
+        let speed = Math.sqrt(vx**2 + vy**2);
+
+        this.navigate(dt, this.angleToIntercept(this.getNearestEnemy(), speed))
     }
 
     draw(ctx: CanvasRenderingContext2D) {

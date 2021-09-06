@@ -24,7 +24,7 @@ export class HeavyFighter extends Fighter {
 
     fireWeapon(): Bullet {
         this.ammo--;
-        return new HeavyBullet(this.battlefield, this, this.angleTo(this.getNearestEnemy()));
+        return new HeavyBullet(this.battlefield, this, this.angleToIntercept(this.getNearestEnemy(), HeavyBullet.SPEED));
     }
 
     draw(ctx: CanvasRenderingContext2D) {

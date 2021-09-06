@@ -17,28 +17,7 @@ export class SniperFighter extends Fighter {
     }
 
     fireWeapon(): Bullet {
-        let target = this.getNearestEnemy();
-
-        // calculate angle to intersect target at their
-        // current velocity
-
-        let {x: x1, y: y1} = this;
-        let {x: x2, y: y2} = target;
-
-        let dx = x2 - x1;
-        let dy = y2 - y1;
-
-        let {vx: vx2, vy: vy2} = target.velocity();
-        let v1 = SniperBullet.SPEED;
-        let v2 = Math.sqrt(vx2**2 + vy2**2);
-        let a2 = Math.atan2(vy2, vx2);
-
-        let alpha = Math.atan2(-dx, dy);
-        let l = Math.sqrt(dx**2 + dy**2);
-
-        let angle = alpha + Math.acos(v2 / v1 * (dy * Math.cos(a2) - dx * Math.sin(a2)) / l)
-
-        return new SniperBullet(this.battlefield, this, angle);
+        return new SniperBullet(this.battlefield, this, this.angleToIntercept(this.getNearestEnemy(), SniperBullet.SPEED));
     }
 
     draw(ctx: CanvasRenderingContext2D) {

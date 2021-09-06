@@ -31,11 +31,16 @@ export class Entity {
     // properties
 
     bounds(): {left: number, right: number, top: number, bottom: number} {
+        let {x, y, w, h} = this;
+        if (isNaN(x) || isNaN(y) || isNaN(w) || isNaN(h)) {
+            console.log(`${JSON.stringify(this)} ${JSON.stringify(x)} ${JSON.stringify(y)} ${JSON.stringify(w)} ${JSON.stringify(h)}`);
+        }
+
         return {
-            left: this.x - this.w/2,
-            right: this.x + this.w/2,
-            top: this.y - this.h/2,
-            bottom: this.y + this.h/2
+            left: x - w/2,
+            right: x + w/2,
+            top: y - h/2,
+            bottom: y + h/2
         }
     }
 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <script src="dist/battlefield.js"></script>
+    <script src="js/battlefield.js"></script>
     <script>
         window.onload = () => {
             document.getElementById("links").childNodes.forEach(a => {
@@ -16,7 +16,7 @@
                 a.addEventListener('click', show.bind(null, content))
             });
 
-            Battlefield.playGame();
+            battlefield.playGame();
         }
 
         let currentContent = null;
@@ -45,6 +45,7 @@
 
         <div id="body">
             <div id="links">
+                <a href="belt.html">belt</a>
                 <a>about</a>
                 <a>contact</a>
             </div>

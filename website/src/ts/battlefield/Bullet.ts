@@ -4,12 +4,14 @@ import {Battlefield, Team} from "./Battlefield";
 
 export class Bullet extends Entity {
 
+    static SPEED: number = 500
+
     battlefield: Battlefield
     team: Team;
     damage: number;
 
     constructor(battlefield: Battlefield, {team, x, y, w, h, px, py}: Fighter, angle: number, damage: number,
-                speed: number = 500, mass: number = 0.2) {
+                speed: number = Bullet.SPEED, mass: number = 0.2) {
         super(x + w * Math.cos(angle), y + h * Math.sin(angle), 4, 4, mass);
         this.bitmask = team === 'red' ? Fighter.BLUE_BITMASK : Fighter.RED_BITMASK;
 
@@ -32,6 +34,7 @@ export class Bullet extends Entity {
     }
 
     didHitFighter(fighter: Fighter) {
+        console.log(typeof this);
         if (fighter.team !== this.team) {
             fighter.takeDamage(this.damage);
             this.battlefield.entities.delete(this);

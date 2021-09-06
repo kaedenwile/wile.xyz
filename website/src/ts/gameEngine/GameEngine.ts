@@ -31,6 +31,9 @@ export class GameEngine {
     }
 
     physicsStep(dt: number) {
+        if (isNaN(dt)) {
+            console.log("DT is NAN");
+        }
         this.entities.forEach(entity => {
             let {vx, vy} = entity.velocity();
             entity.x += vx * dt;
