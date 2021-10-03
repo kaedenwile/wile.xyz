@@ -39,5 +39,9 @@ export class InfraStack extends cdk.Stack {
 
     // Note that NS and SOA records are created automatically
     // Remember to manually update name servers on the domain
+
+    let devBucket = new s3.Bucket(this, 'devBucket', {
+      websiteIndexDocument: 'index'
+    });
   }
 }
