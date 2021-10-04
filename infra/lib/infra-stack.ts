@@ -14,7 +14,7 @@ export class InfraStack extends cdk.Stack {
     super(scope, id, props);
 
     let websiteBucket = new s3.Bucket(this, 'websiteBucket', {
-      websiteIndexDocument: 'index.html'
+      websiteIndexDocument: 'index'
     });
 
     let websiteHostedZone = new route53.PublicHostedZone(this, 'websiteHostedZone', {
