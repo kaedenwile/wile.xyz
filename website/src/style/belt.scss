@@ -13,6 +13,8 @@ $gray: #c0c0c0;
 $ship-x: calc(50% - 10rem);
 $ship-y: 15rem;
 
+$breakpoint-mobile: 768px;
+
 html, body, div, h1, p {
     padding: 0;
     margin: 0;
@@ -37,9 +39,16 @@ html, body {
     font-family: "Perfect DOS VGA 437", Arial, sans-serif;
 
     h1 {
-        padding: 4rem 0 1rem 0;
-        font-size: 4rem;
+        /** MOBILE **/
+        padding: 2rem 0 1rem 0;
 
+        /** DESKTOP **/
+        @media (min-width: $breakpoint-mobile) {
+            padding-top: 4rem;
+        }
+
+
+        font-size: 4rem;
         text-align: center;
     }
 
@@ -111,6 +120,7 @@ html, body {
 
         #versions-container {
             overflow-y: scroll;
+            margin: 0 2rem;
             max-width: 30rem;
             align-self: center;
 
@@ -148,15 +158,6 @@ html, body {
                     li {
                         padding: 0.5rem 0;
                     }
-
-                    //& li {
-                    //display: inline-block;
-
-                    //&:before {
-                    //    content: "*";
-                    //    margin: 0 1em;
-                    //}
-                    //}
                 }
             }
         }
@@ -167,7 +168,11 @@ html, body {
     }
 
     #footer {
-        margin-top: 1rem;
+        /** DESKTOP **/
+        @media (min-width: $breakpoint-mobile) {
+            margin-top: 1rem;
+        }
+
         padding: 0.5rem;
 
         display: flex;
@@ -187,7 +192,14 @@ html, body {
     }
 
     a {
-        margin: 2rem 0;
+        /** MOBILE **/
+        margin: 1.5rem 0 1rem 0;
+
+        /** DESKTOP **/
+        @media (min-width: $breakpoint-mobile) {
+            margin: 2rem 0;
+        }
+
         font-size: 2rem;
         color: white;
 
