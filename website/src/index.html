@@ -3,42 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>wile.xyz</title>
-    <link rel="stylesheet" type="text/css" href="style/battlefield.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <script src="js/battlefield.js"></script>
-    <script>
-        window.onload = () => {
-            document.getElementById("links").childNodes.forEach(a => {
-                let content = a.innerText;
-                a.id = `link_${content}`;
-                a.addEventListener('click', show.bind(null, content))
-            });
-
-            battlefield.playGame();
-        }
-
-        let currentContent = null;
-        function show(content, event) {
-            function hideCurrentContent() {
-                if (currentContent === null) return;
-                document.getElementById(`link_${currentContent}`).classList.remove("active");
-                document.getElementById(currentContent).style.display = 'none';
-                currentContent = null;
-            }
-
-            if (content === currentContent) {
-                hideCurrentContent();
-            } else {
-                hideCurrentContent();
-
-                document.getElementById(`link_${content}`).classList.add("active");
-                document.getElementById(content).style.display = 'block';
-                currentContent = content;
-            }
-        }
-    </script>
     <canvas id="battlefield" width="500" height="500">Battlefield</canvas>
     <div id="website">
         <h1>wile.xyz</h1>
