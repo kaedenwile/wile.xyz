@@ -9,6 +9,8 @@ import * as acm from '@aws-cdk/aws-certificatemanager';
 import * as route53 from '@aws-cdk/aws-route53';
 import * as targets from '@aws-cdk/aws-route53-targets';
 
+import * as iam from '@aws-cdk/aws-iam';
+
 export class InfraStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -43,5 +45,38 @@ export class InfraStack extends cdk.Stack {
     let devBucket = new s3.Bucket(this, 'devBucket', {
       websiteIndexDocument: 'index'
     });
+
+    // Configure User for doing Github Deployments
+    let deploymentUser = new iam.User(this, 'DeploymentUser', {
+      userName: 'XYZWebsite_GithubDeploymentUser',
+    });
+    let accessKey = new iam.CfnAccessKey(this, 'DeploymentUserAccessKey', {
+      userName: deploymentUser.userName
+    });
+    new iam.Policy(this, 'DeploymentPolicy', {
+      statements: [
+        new iam.PolicyStatement({
+          actions: ["cloudformation:DescribeStackResources"],
+          resources: [this.stackId]
+        }),
+        new iam.PolicyStatement({
+          actions: [
+            "s3:ListBucket",
+            "s3:PutObject",
+            "s3:PutObjectAcl",
+            "s3:DeleteObject"
+          ],
+          resources: [
+            websiteBucket.bucketArn,
+            cdk.Fn.join("/", [websiteBucket.bucketArn, "*"]),
+            devBucket.bucketArn,
+            cdk.Fn.join("/", [devBucket.bucketArn, "*"]),
+          ],
+        })
+      ]
+    }).attachToUser(deploymentUser);
+
+    new cdk.CfnOutput(this, 'accessKeyId', { value: accessKey.ref });
+    new cdk.CfnOutput(this, 'secretAccessKey', { value: accessKey.attrSecretAccessKey });
   }
 }
