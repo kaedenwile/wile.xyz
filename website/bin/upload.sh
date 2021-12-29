@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 STACK_NAME=InfraStack
 
