@@ -68,12 +68,12 @@ module.exports = {
             chunks: ['home', 'battlefield']
         }),
         new HtmlWebpackPlugin({
-            template: 'src/belt.html',
+            template: 'src/belt/index.html',
             chunks: ['belt'],
             filename: 'belt.html'
         }),
         new HtmlWebpackPlugin({
-            template: 'src/belt/whats-new.html',
+            template: 'src/belt/whats-new/index.html',
             chunks: ['belt'],
             filename: 'belt/whats-new.html'
         })
