@@ -27,7 +27,8 @@ jobs:
 
       - name: Webpack build website
         run: npm run build
+        working-directory: ./website
 
       - name: Upload website
         run: ./website/bin/upload.sh
-        shell: bash
+        working-directory: ./website
