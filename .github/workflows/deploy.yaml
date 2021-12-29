@@ -34,5 +34,5 @@ jobs:
         working-directory: ./website
 
       - name: Upload website
-        run: ./website/bin/upload.sh
+        run: ./bin/upload.sh
         working-directory: ./website
