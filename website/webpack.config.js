@@ -2,9 +2,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-// const { readdirSync } = require('fs');
-// console.log(readdirSync('./src'));
-
 let hash = (+new Date).toString(36);
 
 module.exports = {

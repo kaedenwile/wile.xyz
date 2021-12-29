@@ -11,7 +11,7 @@ window.onload = () => {
 }
 
 let currentContent = null;
-function show(content, event) {
+function show(content) {
     function hideCurrentContent() {
         if (currentContent === null) return;
         document.getElementById(`link_${currentContent}`).classList.remove("active");
