@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - deploy
 
 env:
   AWS_REGION: us-west-2
@@ -43,3 +42,5 @@ jobs:
       - name: Upload website
         run: ./bin/upload.sh
         working-directory: ./website
+        env:
+          BUCKET_NAME: websiteBucket
