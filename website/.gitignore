@@ -1,4 +1,4 @@
 *.map
 *.css
 *.js
-public/
+dist

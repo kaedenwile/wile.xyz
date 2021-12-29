@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>BELT ~ wile.xyz</title>
-    <link rel="stylesheet" type="text/css" href="/style/belt.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-itunes-app" content="app-id=1574113584">
 
@@ -14,8 +13,6 @@
     <link rel="shortcut icon" href="/icons/belt/favicon.ico">
 </head>
 <body>
-<script src="/js/belt.js"></script>
-
     <div id="body">
         <h1>BELT</h1>
 
@@ -23,8 +20,8 @@
             <div class="scene">
                 <div class="bullet"></div>
                 <div class="ship">
-                    <img class="shuttle" src="img/belt/ship.png" alt="spaceship"/>
-                    <img class="exhaust" src="img/belt/exhaust.gif" alt="exhaust">
+                    <img class="shuttle" src="/img/belt/ship.png" alt="spaceship"/>
+                    <img class="exhaust" src="/img/belt/exhaust.gif" alt="exhaust">
                 </div>
             </div>
 
@@ -32,7 +29,7 @@
                 <img src="/img/belt/download_on_app_store.png" alt="Download on the Apple App Store"/>
             </a>
 
-            <a onclick="belt.showDescription()">Learn More</a>
+            <a id="learn-more-button">Learn More</a>
         </div>
 
         <div id="discover" class="content">
@@ -52,7 +49,7 @@
                 game has undergone many changes including being completely rewritten.
             </p>
 
-            <a onclick="belt.showHome()">Back</a>
+            <a id="show-home-button">Back</a>
         </div>
 
         <div id="footer">
