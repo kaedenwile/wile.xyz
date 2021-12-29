@@ -16,3 +16,5 @@ aws s3 sync dist "s3://$BUCKET_NAME" --delete --exclude '*.html' --acl bucket-ow
 for html in $(find dist -name '*.html'); do
   aws s3 cp $html "s3://$BUCKET_NAME/$(echo $html | sed "s/dist\/\(.*\)\.html$/\1/")" --content-type text/html --acl bucket-owner-full-control --acl public-read --metadata-directive REPLACE
 done
+
+echo "\n******************\n* UPLOADED TO:\n*\thttp://${BUCKET_NAME}.s3-website-us-west-2.amazonaws.com\n******************"
