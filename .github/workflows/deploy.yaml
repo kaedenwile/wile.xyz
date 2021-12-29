@@ -1,0 +1,33 @@
+name: Deploy Website
+on:
+  push:
+    branches:
+      - main
+      - deploy
+
+env:
+  AWS_REGION: us-west-2
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Webpack build website
+        run: npm run build
+
+      - name: Upload website
+        run: ./website/bin/upload.sh
+        shell: bash

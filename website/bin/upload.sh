@@ -5,12 +5,14 @@ STACK_NAME=InfraStack
 # shellcheck disable=SC2016
 BUCKET_NAME=$(
   aws cloudformation describe-stack-resources --stack-name "$STACK_NAME" \
-  --query 'StackResources[?starts_with(LogicalResourceId, `websiteBucket`)].PhysicalResourceId' \
+  --query 'StackResources[?starts_with(LogicalResourceId, `devBucket`)].PhysicalResourceId' \
   --output text
 )
 # Use `devBucket` instead of `websiteBucket` for testing
 
-aws s3 sync dist "s3://$BUCKET_NAME" --delete --exclude '*.html' --acl bucket-owner-full-control --acl public-read
+[ -z "$BUCKET_NAME" ] && exit 1
+
+aws s3 sync dist "s3://$BUCKET_NAME" --exclude '*.html' --acl bucket-owner-full-control --acl public-read
 
 # UPLOAD WITHOUT .HTML SUFFIX
 for html in $(find dist -name '*.html'); do
