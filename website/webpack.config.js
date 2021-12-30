@@ -41,7 +41,7 @@ module.exports = {
                 use: 'html-loader',
             },
             {
-                test: /\.(svg|gif|png|ico|eot|woff|ttf|webmanifest)$/,
+                test: /\.(svg|gif|png|ico|eot|woff|ttf)$/,
                 type: 'asset/resource',
                 generator: {
                     filename: `${hash}/img/[hash][ext][query]`

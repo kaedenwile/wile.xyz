@@ -1,3 +1,5 @@
+@use 'global';
+
 @font-face {
 ///https://stackoverflow.com/questions/40503039/scss-import-local-ttf-font
     font-family: "Perfect DOS VGA 437";
@@ -47,9 +49,11 @@ html, body {
             padding-top: 4rem;
         }
 
-
         font-size: 4rem;
         text-align: center;
+
+        @include global.no-select;
+        cursor: default;
     }
 
     .content {
@@ -64,6 +68,8 @@ html, body {
             position: relative;
             width: 100%;
             min-height: 25rem;
+
+            @include global.no-select;
 
             .ship {
                 position: absolute;
