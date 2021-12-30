@@ -1,11 +1,11 @@
-# Welcome to your CDK TypeScript project!
+# XYZ Website Infrastructure
 
-This is a blank project for TypeScript development with CDK.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Getting Started
+Make sure you have both the `aws` cli and the `cdk` cli installed and configured on your machine.
+* To install `aws`, on Mac run `brew install awscli` and `aws configure`. 
+* `cdk` can be installed via npm
 
 ## Useful commands
-
  * `npm run build`   compile typescript to js
  * `npm run watch`   watch for changes and compile
  * `npm run test`    perform the jest unit tests
