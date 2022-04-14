@@ -6,8 +6,8 @@ let hash = (+new Date).toString(36);
 
 module.exports = {
     entry: {
-        home: './src/app.js',
-        battlefield: ['./src/ts/battlefield/index.ts', './src/style/battlefield.scss'],
+        home: './src/style/home.scss',
+        battlefield: ['./src/app.js', './src/ts/battlefield/index.ts'],
         belt: ['./src/ts/belt.ts', './src/style/belt.scss', './src/belt/privacy-policy.pdf'],
     },
     output: {
@@ -63,6 +63,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             chunks: ['home', 'battlefield']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/404.html',
+            chunks: ['home'],
+            filename: '404.html'
         }),
         new HtmlWebpackPlugin({
             template: 'src/belt/index.html',

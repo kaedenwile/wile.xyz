@@ -1,12 +1,6 @@
 @use 'global';
 
-@font-face {
-///https://stackoverflow.com/questions/40503039/scss-import-local-ttf-font
-    font-family: "Perfect DOS VGA 437";
-    src: url("../font/Perfect DOS VGA 437.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
+@include global.font-face("Perfect DOS VGA 437", "../font/Perfect DOS VGA 437.ttf");
 
 $dark-black: #1C1C1C;
 $light-black: #2D2D2D;

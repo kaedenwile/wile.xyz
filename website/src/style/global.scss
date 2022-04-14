@@ -6,3 +6,13 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
+
+@mixin font-face($name, $path, $weight: null) {
+  // https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
+  @font-face {
+    font-family: quote($name);
+    src: url(quote($path)) format("truetype");
+    font-weight: $weight;
+    font-style: normal;
+  }
+}
