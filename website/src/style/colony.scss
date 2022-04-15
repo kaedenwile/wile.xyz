@@ -1,6 +1,6 @@
 @use 'global';
 
-@include global.font-face("Raleway", "../font/Raleway-Semibold.ttf", 600);
+@include global.font-face("Raleway", "../font/Raleway-SemiBold.ttf", 600);
 @include global.font-face("Raleway", "../font/Raleway-Light.ttf", 300);
 @include global.font-face("Ubuntu Mono", "../font/UbuntuMono-Regular.ttf");
 
