@@ -9,6 +9,7 @@ module.exports = {
         home: './src/style/home.scss',
         battlefield: ['./src/app.js', './src/ts/battlefield/index.ts'],
         belt: ['./src/ts/belt.ts', './src/style/belt.scss', './src/belt/privacy-policy.pdf'],
+        colony: ['./src/style/colony.scss', './src/colony/privacy-policy.pdf'],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -78,6 +79,11 @@ module.exports = {
             template: 'src/belt/whats-new/index.html',
             chunks: ['belt'],
             filename: 'belt/whats-new.html'
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/colony/index.html',
+            chunks: ['colony'],
+            filename: 'colony.html'
+        }),
     ]
 };

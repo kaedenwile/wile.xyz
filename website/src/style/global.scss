@@ -7,6 +7,14 @@
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+@mixin no-drag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 @mixin font-face($name, $path, $weight: null) {
   // https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
   @font-face {
