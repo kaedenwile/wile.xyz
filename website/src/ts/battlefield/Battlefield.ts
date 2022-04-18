@@ -7,6 +7,7 @@ import {StandardFighter} from "./StandardFighter";
 import {SniperFighter} from "./SniperFighter";
 import {MedicFighter} from "./MedicFighter";
 import {HeavyFighter} from "./HeavyFighter";
+import {ShotgunFighter} from "./ShotgunFighter";
 
 type Team = 'red' | 'blue'
 
@@ -39,6 +40,7 @@ class Battlefield extends GameEngine {
             SniperFighter,
             // MeleeFighter,
             HeavyFighter,
+            ShotgunFighter,
             MedicFighter
         ]))(this, team, team === 'red' ? 25 : this.canvas.width - 25, Math.random() * this.canvas.height);
 

@@ -28,7 +28,7 @@ export class Fighter extends Entity {
         this.team = team;
 
         this.maxCoolDown = coolDown;
-        this.coolDown = Math.random() * coolDown;
+        this.coolDown = Math.max(coolDown, 2) * Math.random();
 
         this.bitmask = Fighter.FIGHTER_BITMASK | (team === 'red' ? Fighter.RED_BITMASK : Fighter.BLUE_BITMASK);
         this.px = (Math.random() - 0.5) * 100;

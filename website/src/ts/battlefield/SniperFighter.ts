@@ -35,7 +35,7 @@ class SniperBullet extends Bullet {
     static SPEED = 650;
 
     constructor(battlefield: Battlefield, fighter: Fighter, angle: number) {
-        super(battlefield, fighter, angle, 2.5, SniperBullet.SPEED, 0.5);
+        super(battlefield, fighter, angle, 5, SniperBullet.SPEED, 0.5);
     }
 
     draw(ctx: CanvasRenderingContext2D) {

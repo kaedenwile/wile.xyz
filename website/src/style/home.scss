@@ -58,7 +58,7 @@ html, body {
         text-decoration: none;
 
         &.active {
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         &:hover {
@@ -124,6 +124,8 @@ html, body {
       text-align: right;
       color: #777;
       font-size: 12px;
+
+      padding: 0.5rem;
 
       a, a:active {
         color: #777;
