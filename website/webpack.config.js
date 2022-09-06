@@ -1,8 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const fs = require('fs');
 
 let hash = (+new Date).toString(36);
+
+const chordFiles = fs.readdirSync('./src/music/chords')
+    .map(filename => `./src/music/chords/${filename}`);
 
 module.exports = {
     entry: {
@@ -10,6 +14,7 @@ module.exports = {
         battlefield: ['./src/app.js', './src/ts/battlefield/index.ts'],
         belt: ['./src/ts/belt.ts', './src/style/belt.scss', './src/belt/privacy-policy.pdf'],
         colony: ['./src/style/colony.scss', './src/colony/privacy-policy.pdf'],
+        music: ['./src/style/music.scss', ...chordFiles],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -84,6 +89,11 @@ module.exports = {
             template: 'src/colony/index.html',
             chunks: ['colony'],
             filename: 'colony.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/music/index.html',
+            chunks: ['music'],
+            filename: 'music.html'
         }),
     ]
 };
