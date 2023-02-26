@@ -1,6 +1,7 @@
 import {Entity} from '../gameEngine';
 import {Battlefield, Team} from './Battlefield';
 import {Bullet} from "./Bullet";
+import {DeathBlock} from "./animations/DeathBlock";
 
 export class Fighter extends Entity {
 
@@ -78,6 +79,10 @@ export class Fighter extends Entity {
             this.battlefield.entities.delete(this);
             this.battlefield.fighters.delete(this);
             this.battlefield.spawnFighter(this.team);
+
+            for (let i = 0; i < 5; i++) {
+                this.battlefield.entities.add(new DeathBlock(this));
+            }
         }
     }
 

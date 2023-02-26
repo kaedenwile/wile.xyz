@@ -22,7 +22,6 @@ class Battlefield extends GameEngine {
         window.onresize = () => {
             this.canvas.width = document.documentElement.clientWidth;
             this.canvas.height = document.documentElement.clientHeight;
-            console.log(`${this.canvas.width} x ${this.canvas.height}`);
         }
 
         this.fighters = new Set();
