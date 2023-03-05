@@ -20,9 +20,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '17'
-          cache: 'npm'
-          cache-dependency-path: website/package-lock.json
+          node-version: '18'
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -31,12 +31,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: NPM install
-        run: npm i
-        working-directory: ./website
+      - name: Yarn install
+        run: yarn
 
       - name: Webpack build website
-        run: npm run build
+        run: yarn run build
         working-directory: ./website
 
       - name: Upload website
