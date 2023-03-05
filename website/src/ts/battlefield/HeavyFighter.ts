@@ -1,11 +1,10 @@
-import {Fighter} from "./Fighter";
-import {Battlefield, Team} from "./Battlefield";
-import {Bullet} from "./Bullet";
+import { Fighter } from './Fighter';
+import { Battlefield, Team } from './Battlefield';
+import { Bullet } from './Bullet';
 
 export class HeavyFighter extends Fighter {
-
-    clipSize: number = 3;
-    ammo: number = this.clipSize
+    clipSize = 3;
+    ammo: number = this.clipSize;
 
     constructor(battlefield: Battlefield, team: Team, x: number, y: number) {
         super(battlefield, team, x, y, 0.2);
@@ -24,25 +23,26 @@ export class HeavyFighter extends Fighter {
 
     fireWeapon(): Bullet {
         this.ammo--;
-        return new HeavyBullet(this.battlefield, this, this.angleToIntercept(this.getNearestEnemy(), HeavyBullet.SPEED));
+        return new HeavyBullet(
+            this.battlefield,
+            this,
+            this.angleToIntercept(this.getNearestEnemy(), HeavyBullet.SPEED)
+        );
     }
 
     draw(ctx: CanvasRenderingContext2D) {
         super.draw(ctx);
 
-        let {x, y} = this;
+        const { x, y } = this;
         ctx.fillStyle = '#ffaaff';
         ctx.fillRect(x - 2, y - 2, 4, 4);
     }
-
 }
 
 class HeavyBullet extends Bullet {
-
     static SPEED = 350;
 
     constructor(battlefield: Battlefield, fighter: Fighter, angle: number) {
         super(battlefield, fighter, angle, 1.0, HeavyBullet.SPEED, 0.1);
     }
-
 }

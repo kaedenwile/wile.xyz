@@ -1,17 +1,22 @@
-import {Entity} from "../gameEngine";
-import {Fighter} from "./Fighter";
-import {Battlefield, Team} from "./Battlefield";
+import { Entity } from '../gameEngine';
+import { Fighter } from './Fighter';
+import { Battlefield, Team } from './Battlefield';
 
 export class Bullet extends Entity {
+    static SPEED = 500;
 
-    static SPEED: number = 500
-
-    battlefield: Battlefield
+    battlefield: Battlefield;
     team: Team;
     damage: number;
 
-    constructor(battlefield: Battlefield, {team, x, y, w, h, px, py}: Fighter, angle: number, damage: number,
-                speed: number = Bullet.SPEED, mass: number = 0.2) {
+    constructor(
+        battlefield: Battlefield,
+        { team, x, y, w, h }: Fighter,
+        angle: number,
+        damage: number,
+        speed: number = Bullet.SPEED,
+        mass = 0.2
+    ) {
         super(x + w * Math.cos(angle), y + h * Math.sin(angle), 4, 4, mass);
         this.bitmask = team === 'red' ? Fighter.BLUE_BITMASK : Fighter.RED_BITMASK;
 
@@ -39,5 +44,4 @@ export class Bullet extends Entity {
             this.battlefield.entities.delete(this);
         }
     }
-
 }

@@ -1,9 +1,9 @@
 @use 'global';
 
-@include global.font-face("Perfect DOS VGA 437", "../font/Perfect DOS VGA 437.ttf");
+@include global.font-face('Perfect DOS VGA 437', '../font/Perfect DOS VGA 437.ttf');
 
-$dark-black: #1C1C1C;
-$light-black: #2D2D2D;
+$dark-black: #1c1c1c;
+$light-black: #2d2d2d;
 $gray: #c0c0c0;
 
 $ship-x: calc(50% - 10rem);
@@ -11,12 +11,17 @@ $ship-y: 15rem;
 
 $breakpoint-mobile: 768px;
 
-html, body, div, h1, p {
+html,
+body,
+div,
+h1,
+p {
     padding: 0;
     margin: 0;
 }
 
-html, body {
+html,
+body {
     background-color: $dark-black;
     height: 100%;
     max-height: 100%;
@@ -32,7 +37,7 @@ html, body {
 
     background-color: $dark-black;
     color: white;
-    font-family: "Perfect DOS VGA 437", Arial, sans-serif;
+    font-family: 'Perfect DOS VGA 437', Arial, sans-serif;
 
     h1 {
         /** MOBILE **/
@@ -129,9 +134,11 @@ html, body {
             padding: 1rem 0;
 
             /* Hide scrollbar */
-            &::-webkit-scrollbar {display: none;}
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
 
             .version {
                 width: 100%;
@@ -179,7 +186,8 @@ html, body {
         flex-wrap: wrap;
         justify-content: space-between;
 
-        a, div {
+        a,
+        div {
             margin: 8px 16px 0 0;
             font-size: 1rem;
         }
@@ -206,23 +214,21 @@ html, body {
         cursor: pointer;
 
         &:hover {
-            color: $gray
+            color: $gray;
         }
     }
 }
 
 @keyframes bullet {
     0% {
-
     }
 
     80% {
-        opacity: 100%
+        opacity: 100%;
     }
 
     100% {
         transform: translate3D(400px, -400px, 0) rotate(-45deg);
-        opacity: 0
+        opacity: 0;
     }
 }
-

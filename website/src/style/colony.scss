@@ -1,20 +1,25 @@
 @use 'global';
 
-@include global.font-face("Raleway", "../font/Raleway-SemiBold.ttf", 600);
-@include global.font-face("Raleway", "../font/Raleway-Light.ttf", 300);
-@include global.font-face("Ubuntu Mono", "../font/UbuntuMono-Regular.ttf");
+@include global.font-face('Raleway', '../font/Raleway-SemiBold.ttf', 600);
+@include global.font-face('Raleway', '../font/Raleway-Light.ttf', 300);
+@include global.font-face('Ubuntu Mono', '../font/UbuntuMono-Regular.ttf');
 
-$tan: #F9F8EB;
+$tan: #f9f8eb;
 $gray: #545454;
 
 $breakpoint-mobile: 768px;
 
-html, body, div, h1, p {
+html,
+body,
+div,
+h1,
+p {
     padding: 0;
     margin: 0;
 }
 
-html, body {
+html,
+body {
     background-color: $tan;
     height: 100%;
     max-height: 100%;
@@ -30,7 +35,7 @@ html, body {
 
     background-color: $tan;
     color: $gray;
-    font-family: "Raleway", Arial, sans-serif;
+    font-family: 'Raleway', Arial, sans-serif;
 
     h1 {
         /** MOBILE **/
@@ -97,14 +102,15 @@ html, body {
             margin-top: 1rem;
         }
 
-        font-family: "Ubuntu Mono", monospace;
+        font-family: 'Ubuntu Mono', monospace;
         padding: 0.5rem;
 
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
 
-        a, div {
+        a,
+        div {
             margin: 8px 16px 0 0;
             font-size: 1rem;
         }

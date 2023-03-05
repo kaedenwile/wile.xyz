@@ -1,6 +1,6 @@
-import {Battlefield} from "./Battlefield";
+import { Battlefield } from './Battlefield';
 
 export function playGame() {
-    let battlefield = new Battlefield();
+    const battlefield = new Battlefield();
     battlefield.gameLoop();
 }

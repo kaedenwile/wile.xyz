@@ -1,12 +1,12 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+/* eslint-disable */
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
-let hash = (+new Date).toString(36);
+let hash = (+new Date()).toString(36);
 
-const chordFiles = fs.readdirSync('./src/music/chords')
-    .map(filename => `./src/music/chords/${filename}`);
+const chordFiles = fs.readdirSync('./src/music/chords').map((filename) => `./src/music/chords/${filename}`);
 
 module.exports = {
     entry: {
@@ -23,8 +23,8 @@ module.exports = {
         library: '[name]',
     },
     resolve: {
-        roots: [ path.resolve(__dirname, 'src') ],
-        extensions: [ '.tsx', '.ts', '.js', '.scss' ],
+        roots: [path.resolve(__dirname, 'src')],
+        extensions: ['.tsx', '.ts', '.js', '.scss'],
     },
     devtool: 'inline-source-map',
     module: {
@@ -36,11 +36,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.html$/,
@@ -50,50 +46,50 @@ module.exports = {
                 test: /\.(svg|gif|png|ico|eot|woff|ttf)$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: `${hash}/img/[hash][ext][query]`
-                }
+                    filename: `${hash}/img/[hash][ext][query]`,
+                },
             },
             {
                 test: /\.(pdf)$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: ({filename}) => filename.replace(/^src\//, ''),
-                }
+                    filename: ({ filename }) => filename.replace(/^src\//, ''),
+                },
             },
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `${hash}/style/[name].css`
+            filename: `${hash}/style/[name].css`,
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            chunks: ['home', 'battlefield']
+            chunks: ['home', 'battlefield'],
         }),
         new HtmlWebpackPlugin({
             template: 'src/404.html',
             chunks: ['home'],
-            filename: '404.html'
+            filename: '404.html',
         }),
         new HtmlWebpackPlugin({
             template: 'src/belt/index.html',
             chunks: ['belt'],
-            filename: 'belt.html'
+            filename: 'belt.html',
         }),
         new HtmlWebpackPlugin({
             template: 'src/belt/whats-new/index.html',
             chunks: ['belt'],
-            filename: 'belt/whats-new.html'
+            filename: 'belt/whats-new.html',
         }),
         new HtmlWebpackPlugin({
             template: 'src/colony/index.html',
             chunks: ['colony'],
-            filename: 'colony.html'
+            filename: 'colony.html',
         }),
         new HtmlWebpackPlugin({
             template: 'src/music/index.html',
             chunks: ['music'],
-            filename: 'music.html'
+            filename: 'music.html',
         }),
-    ]
+    ],
 };

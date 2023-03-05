@@ -1,7 +1,4 @@
-import {Entity} from './Entity'
-import {GameEngine} from "./GameEngine";
+import { Entity } from './Entity';
+import { GameEngine } from './GameEngine';
 
-export {
-    Entity,
-    GameEngine
-}
+export { Entity, GameEngine };

@@ -1,20 +1,20 @@
-import {playGame} from "./ts/battlefield";
+import { playGame } from './ts/battlefield';
 
 window.onload = () => {
-    document.getElementById("links").childNodes.forEach(a => {
+    document.getElementById('links').childNodes.forEach((a) => {
         let content = a.innerText;
         a.id = `link_${content}`;
-        a.addEventListener('click', show.bind(null, content))
+        a.addEventListener('click', show.bind(null, content));
     });
 
     playGame();
-}
+};
 
 let currentContent = null;
 function show(content) {
     function hideCurrentContent() {
         if (currentContent === null) return;
-        document.getElementById(`link_${currentContent}`).classList.remove("active");
+        document.getElementById(`link_${currentContent}`).classList.remove('active');
         document.getElementById(currentContent).style.display = 'none';
         currentContent = null;
     }
@@ -24,7 +24,7 @@ function show(content) {
     } else {
         hideCurrentContent();
 
-        document.getElementById(`link_${content}`).classList.add("active");
+        document.getElementById(`link_${content}`).classList.add('active');
         document.getElementById(content).style.display = 'block';
         currentContent = content;
     }

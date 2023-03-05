@@ -1,10 +1,9 @@
-import {Fighter} from "./Fighter";
-import {Battlefield, Team} from "./Battlefield";
-import {Bullet} from "./Bullet";
-import {Entity} from "../gameEngine";
+import { Fighter } from './Fighter';
+import { Battlefield, Team } from './Battlefield';
+import { Bullet } from './Bullet';
+import { Entity } from '../gameEngine';
 
 export class SniperFighter extends Fighter {
-
     constructor(battlefield: Battlefield, team: Team, x: number, y: number) {
         super(battlefield, team, x, y, 5.0 + Math.random());
 
@@ -17,21 +16,23 @@ export class SniperFighter extends Fighter {
     }
 
     fireWeapon(): Bullet {
-        return new SniperBullet(this.battlefield, this, this.angleToIntercept(this.getNearestEnemy(), SniperBullet.SPEED));
+        return new SniperBullet(
+            this.battlefield,
+            this,
+            this.angleToIntercept(this.getNearestEnemy(), SniperBullet.SPEED)
+        );
     }
 
     draw(ctx: CanvasRenderingContext2D) {
         super.draw(ctx);
 
-        let {x, y} = this;
+        const { x, y } = this;
         ctx.fillStyle = '#aaff77';
         ctx.fillRect(x - 2, y - 2, 4, 4);
     }
-
 }
 
 class SniperBullet extends Bullet {
-
     static SPEED = 650;
 
     constructor(battlefield: Battlefield, fighter: Fighter, angle: number) {
@@ -42,5 +43,4 @@ class SniperBullet extends Bullet {
         ctx.fillStyle = '#aaff77';
         Entity.prototype.draw.call(this, ctx);
     }
-
 }

@@ -1,9 +1,8 @@
-import {Fighter} from "./Fighter";
-import {Battlefield, Team} from "./Battlefield";
-import {Bullet} from "./Bullet";
+import { Fighter } from './Fighter';
+import { Battlefield, Team } from './Battlefield';
+import { Bullet } from './Bullet';
 
 export class MedicFighter extends Fighter {
-
     constructor(battlefield: Battlefield, team: Team, x: number, y: number) {
         super(battlefield, team, x, y, 2.0);
         this.acceleration = 100;
@@ -12,12 +11,12 @@ export class MedicFighter extends Fighter {
     update(dt: number) {
         super.update(dt);
 
-        let target = this.getNearestInjuredFriendly();
+        const target = this.getNearestInjuredFriendly();
         this.navigate(dt, target ? this.angleTo(target) : Math.PI);
     }
 
     fireWeapon(): Bullet {
-        let target = this.getNearestInjuredFriendly();
+        const target = this.getNearestInjuredFriendly();
 
         if (target && this.distanceTo(target) < 100) {
             return new MedPack(this.battlefield, this, this.angleToIntercept(target, MedPack.SPEED));
@@ -30,8 +29,8 @@ export class MedicFighter extends Fighter {
     draw(ctx: CanvasRenderingContext2D) {
         super.draw(ctx);
 
-        let {x, y, w, h} = this;
-        let {left, top} = this.bounds();
+        const { x, y, w, h } = this;
+        const { left, top } = this.bounds();
 
         ctx.fillStyle = 'white';
         ctx.fillRect(x - 1, top, 2, h);
@@ -39,15 +38,11 @@ export class MedicFighter extends Fighter {
     }
 
     getNearestInjuredFriendly() {
-        return this.getNearest(
-            fighter => fighter !== this && fighter.team === this.team && fighter.health < 5.0
-        )
+        return this.getNearest((fighter) => fighter !== this && fighter.team === this.team && fighter.health < 5.0);
     }
-
 }
 
 class MedPack extends Bullet {
-
     static SPEED = 250;
 
     constructor(battlefield: Battlefield, fighter: Fighter, angle: number) {
@@ -57,12 +52,12 @@ class MedPack extends Bullet {
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        let {x, y, w, h} = this;
-        let {left, top} = this.bounds();
+        const { x, y, w, h } = this;
+        const { left, top } = this.bounds();
 
         ctx.fillStyle = 'white';
-        ctx.fillRect(x-1, top, 2, h);
-        ctx.fillRect(left, y-1, w, 2);
+        ctx.fillRect(x - 1, top, 2, h);
+        ctx.fillRect(left, y - 1, w, 2);
     }
 
     didHitFighter(fighter: Fighter) {
@@ -71,5 +66,4 @@ class MedPack extends Bullet {
             this.battlefield.entities.delete(this);
         }
     }
-
 }

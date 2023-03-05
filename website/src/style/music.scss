@@ -1,10 +1,15 @@
 @use 'global';
 
-@include global.font-face("Averia", "/font/AveriaSerifLibre-Regular.ttf");
+@include global.font-face('Averia', '/font/AveriaSerifLibre-Regular.ttf');
 
 $breakpoint-mobile: 768px;
 
-html, body, div, h1, h2, p {
+html,
+body,
+div,
+h1,
+h2,
+p {
     padding: 0;
     margin: 0;
 }
@@ -12,7 +17,7 @@ html, body, div, h1, h2, p {
 #body {
     margin: 2rem auto;
     max-width: 50rem;
-    font-family: "Averia", Arial, sans-serif;
+    font-family: 'Averia', Arial, sans-serif;
 
     h1 {
         padding-bottom: 1rem;
