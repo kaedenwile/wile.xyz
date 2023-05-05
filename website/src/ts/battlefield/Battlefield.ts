@@ -8,6 +8,7 @@ import { SniperFighter } from './SniperFighter';
 import { MedicFighter } from './MedicFighter';
 import { HeavyFighter } from './HeavyFighter';
 import { ShotgunFighter } from './ShotgunFighter';
+import { SpawnBlock } from './animations/SpawnBlock';
 
 export type Team = 'red' | 'blue';
 
@@ -48,8 +49,14 @@ export class Battlefield extends GameEngine {
             MedicFighter,
         ]))(this, team, position.x, position.y);
 
-        this.fighters.add(fighter);
-        this.entities.add(fighter);
+        for (let i = 0; i < 5; i++) {
+            this.entities.add(new SpawnBlock(fighter));
+        }
+
+        setTimeout(() => {
+            this.fighters.add(fighter);
+            this.entities.add(fighter);
+        }, 1000 * SpawnBlock.TTL);
     }
 
     handleContact(entity1: Entity, entity2: Entity) {

@@ -2,7 +2,7 @@ import { Battlefield, Team } from '../Battlefield';
 import { Entity } from '../../gameEngine';
 import { Fighter } from '../Fighter';
 
-export class DeathBlock extends Entity {
+export class SpawnBlock extends Entity {
     static TTL = 0.5;
 
     battlefield: Battlefield;
@@ -10,15 +10,21 @@ export class DeathBlock extends Entity {
     ttl: number;
 
     constructor(fighter: Fighter) {
-        super(fighter.x, fighter.y, 5, 5, 1);
+        const px = (Math.random() - 0.5) * 100;
+        const py = (Math.random() - 0.5) * 100;
+
+        const x = fighter.x - SpawnBlock.TTL * px;
+        const y = fighter.y - SpawnBlock.TTL * py;
+
+        super(x, y, 8, 8, 1);
 
         this.battlefield = fighter.battlefield;
         this.team = fighter.team;
-        this.ttl = DeathBlock.TTL;
+        this.ttl = SpawnBlock.TTL;
 
         this.bitmask = 0;
-        this.px = fighter.px + (Math.random() - 0.5) * 200;
-        this.py = fighter.py + (Math.random() - 0.5) * 200;
+        this.px = px;
+        this.py = py;
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -39,7 +45,7 @@ export class DeathBlock extends Entity {
         const r = this.team === 'red' ? 255 : 0.0;
         const g = 0;
         const b = this.team === 'blue' ? 255 : 0.0;
-        const a = this.ttl / DeathBlock.TTL;
+        const a = 1 - this.ttl / SpawnBlock.TTL;
         return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
 }
