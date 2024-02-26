@@ -8,7 +8,7 @@ import { SniperFighter } from './SniperFighter';
 import { MedicFighter } from './MedicFighter';
 import { HeavyFighter } from './HeavyFighter';
 import { ShotgunFighter } from './ShotgunFighter';
-import { SpawnBlock } from './animations/SpawnBlock';
+import { SpawnBlock } from './effects/SpawnBlock';
 
 export type Team = 'red' | 'blue';
 
@@ -26,7 +26,6 @@ export class Battlefield extends GameEngine {
         };
 
         this.fighters = new Set();
-        this.entities = new Set();
 
         for (let i = 0; i < 10; i++) {
             this.spawnFighter('red');

@@ -1,7 +1,7 @@
 import { Entity } from '../gameEngine';
 import { Battlefield, Team } from './Battlefield';
 import { Bullet } from './Bullet';
-import { DeathBlock } from './animations/DeathBlock';
+import { DeathBlock } from './effects/DeathBlock';
 
 export class Fighter extends Entity {
     static FIGHTER_BITMASK = 0b0001;
