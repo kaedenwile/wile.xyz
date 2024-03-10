@@ -4676,6 +4676,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"site@workspace:pkg/site":
+  version: 0.0.0-use.local
+  resolution: "site@workspace:pkg/site"
+  languageName: unknown
+  linkType: soft
+
 "slash@npm:^3.0.0":
   version: 3.0.0
   resolution: "slash@npm:3.0.0"

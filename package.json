@@ -7,7 +7,8 @@
     "license": "MIT",
     "workspaces": [
         "infra",
-        "website"
+        "website",
+        "pkg/*"
     ],
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -38,5 +39,5 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix ."
     },
-    "packageManager": "yarn@4.1.0"
+    "packageManager": "yarn@4.1.1"
 }
