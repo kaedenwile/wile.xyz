@@ -1,5 +1,6 @@
 import './home.css';
 import { ReactNode, useState } from 'react';
+import { Battleground } from '@wile/battleground';
 
 const homeContent = [
   {
@@ -74,29 +75,32 @@ export const Home = ({ tabs = homeContent }: HomeProps) => {
   const [activeTab, setActiveTab] = useState(-1);
 
   return (
-    <div id="website">
-      <h1 className="no-select">wile.xyz</h1>
+    <>
+      <Battleground className="battleground" />
+      <div id="website">
+        <h1 className="no-select">wile.xyz</h1>
 
-      <div id="body">
-        <div id="links">
-          {tabs.map(({ href, title }, i) => (
-            <a key={i} href={href} onClick={() => setActiveTab(i)} className={i === activeTab ? 'active' : ''}>
-              {title}
-            </a>
-          ))}
+        <div id="body">
+          <div id="links">
+            {tabs.map(({ href, title }, i) => (
+              <a key={i} href={href} onClick={() => setActiveTab(i)} className={i === activeTab ? 'active' : ''}>
+                {title}
+              </a>
+            ))}
+          </div>
+
+          <div className="content-container">{tabs[activeTab]?.content}</div>
         </div>
 
-        <div className="content-container">{tabs[activeTab]?.content}</div>
-      </div>
+        <div id="footer">
+          <div id="copyright">
+            <a href="https://github.com/kaedenwile/XYZWebsite">Code</a>
+            (c) 2024, Kaeden Wile
+          </div>
 
-      <div id="footer">
-        <div id="copyright">
-          <a href="https://github.com/kaedenwile/XYZWebsite">Code</a>
-          (c) 2024, Kaeden Wile
+          <img id="logo" src="/img/kw-logo.png" alt="KW Logo" className="no-select" />
         </div>
-
-        <img id="logo" src="/img/kw-logo.png" alt="KW Logo" className="no-select" />
       </div>
-    </div>
+    </>
   );
 };
