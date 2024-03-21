@@ -1,12 +1,3 @@
-/*@mixin no-drag {*/
-/*  -webkit-user-drag: none;*/
-/*  -khtml-user-drag: none;*/
-/*  -moz-user-drag: none;*/
-/*  -o-user-drag: none;*/
-/*  user-drag: none;*/
-/*}*/
-
-
 @font-face {
   font-family: "Lato";
   src: url("/font/Lato-Regular.ttf") format('truetype');
@@ -21,6 +12,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Perfect DOS VGA 437";
+  src: url("/font/Perfect DOS VGA 437.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   font-family: 'Lato', sans-serif;
   line-height: 1.5;
@@ -29,6 +27,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100%;
+  display: grid;
 }
 
 .no-select {

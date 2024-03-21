@@ -5,6 +5,7 @@ import { Battleground } from '@wile/battleground';
 import homeData from '../../data.json';
 import { HomeData } from './types.ts';
 import { HomeContent } from './HomeContent.tsx';
+import { Link } from '@tanstack/react-router';
 
 export const Home = () => {
   const tabs = homeData as HomeData;
@@ -19,16 +20,27 @@ export const Home = () => {
 
         <div id="body">
           <div id="links">
-            {tabs.map(({ title, link }, i) => (
-              <a
-                key={i}
-                href={link ?? undefined}
-                onClick={() => setActiveTab((active) => (i === active ? -1 : i))}
-                className={i === activeTab ? 'active' : ''}
-              >
-                {title}
-              </a>
-            ))}
+            {tabs.map(({ title, link }, i) => {
+              const commonProps = {
+                key: i,
+                children: title,
+              };
+
+              if (link?.startsWith('https://')) {
+                return <a {...commonProps} href={link} />;
+              } else if (link) {
+                return <Link {...commonProps} to={link} />;
+              } else {
+                const isActive = i === activeTab;
+                return (
+                  <a
+                    {...commonProps}
+                    onClick={() => setActiveTab(isActive ? -1 : i)}
+                    className={isActive ? 'active' : ''}
+                  />
+                );
+              }
+            })}
           </div>
           <div className="content-container">
             <HomeContent content={tabs[activeTab]?.content} />

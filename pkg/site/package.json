@@ -11,17 +11,20 @@
     "sync": "yarn workspace @wile/notion-loader load $PROJECT_CWD/pkg/site/data.json"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.21.0",
     "@wile/battleground": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@wile/notion-loader": "workspace:*",
+    "@tanstack/router-devtools": "^1.21.0",
+    "@tanstack/router-vite-plugin": "^1.20.5",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "@wile/notion-loader": "workspace:*",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
