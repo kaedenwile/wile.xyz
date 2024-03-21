@@ -13,31 +13,35 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as BeltImport } from './routes/belt'
+import { Route as BeltIndexImport } from './routes/belt.index'
+import { Route as BeltWhatsNewImport } from './routes/belt.whats-new'
 
 // Create Virtual Routes
 
-const BeltRouteLazyImport = createFileRoute('/belt')()
 const IndexLazyImport = createFileRoute('/')()
-const BeltWhatsNewLazyImport = createFileRoute('/belt/whats-new')()
 
 // Create/Update Routes
 
-const BeltRouteLazyRoute = BeltRouteLazyImport.update({
+const BeltRoute = BeltImport.update({
   path: '/belt',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/belt/route.lazy').then((d) => d.Route))
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const BeltWhatsNewLazyRoute = BeltWhatsNewLazyImport.update({
+const BeltIndexRoute = BeltIndexImport.update({
+  path: '/',
+  getParentRoute: () => BeltRoute,
+} as any)
+
+const BeltWhatsNewRoute = BeltWhatsNewImport.update({
   path: '/whats-new',
-  getParentRoute: () => BeltRouteLazyRoute,
-} as any).lazy(() =>
-  import('./routes/belt/whats-new.lazy').then((d) => d.Route),
-)
+  getParentRoute: () => BeltRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -48,12 +52,16 @@ declare module '@tanstack/react-router' {
       parentRoute: typeof rootRoute
     }
     '/belt': {
-      preLoaderRoute: typeof BeltRouteLazyImport
+      preLoaderRoute: typeof BeltImport
       parentRoute: typeof rootRoute
     }
     '/belt/whats-new': {
-      preLoaderRoute: typeof BeltWhatsNewLazyImport
-      parentRoute: typeof BeltRouteLazyImport
+      preLoaderRoute: typeof BeltWhatsNewImport
+      parentRoute: typeof BeltImport
+    }
+    '/belt/': {
+      preLoaderRoute: typeof BeltIndexImport
+      parentRoute: typeof BeltImport
     }
   }
 }
@@ -62,7 +70,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
-  BeltRouteLazyRoute.addChildren([BeltWhatsNewLazyRoute]),
+  BeltRoute.addChildren([BeltWhatsNewRoute, BeltIndexRoute]),
 ])
 
 /* prettier-ignore-end */

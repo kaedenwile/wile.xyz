@@ -1,14 +1,15 @@
-import './belt.css';
-import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Belt = () => {
+export const Route = createFileRoute('/belt/')({
+  component: Belt,
+});
+
+function Belt() {
   const [isShowingHome, setIsShowingHome] = useState(true);
 
   return (
-    <div className="belt">
-      <h1>BELT</h1>
-
+    <>
       {isShowingHome ? (
         <div id="landing" className="content">
           <div className="scene">
@@ -42,13 +43,6 @@ export const Belt = () => {
           <a onClick={() => setIsShowingHome(true)}>Back</a>
         </div>
       )}
-
-      <div id="footer">
-        <a href="/pdf/belt-privacy-policy.pdf">Privacy Policy</a>
-        <a href="/belt/whats-new">What's New</a>
-        <Link to="/">wile.xyz</Link>
-        <div>(c) 2021 Kaeden Wile</div>
-      </div>
-    </div>
+    </>
   );
-};
+}
