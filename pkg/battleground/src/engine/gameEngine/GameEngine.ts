@@ -1,4 +1,5 @@
 import { Entity } from './Entity';
+import { PaintMessage } from '../../types.ts';
 
 export class GameEngine {
   width: number;
@@ -101,12 +102,10 @@ export class GameEngine {
   }
 
   drawStep() {
-    console.log('painting with ', this.width, this.height);
-
     self.postMessage({
       type: 'paint',
       blocks: [{ x: 0, y: 0, w: this.width, h: this.height, c: 'black' }, [...this.entities].map((e) => e.draw())],
-    });
+    } as PaintMessage);
   }
 
   // internal physics step. Calculates elastic collision

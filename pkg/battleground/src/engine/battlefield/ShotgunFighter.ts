@@ -8,6 +8,8 @@ export class ShotgunFighter extends Fighter {
   clipSize = 8;
   ammo: number = this.clipSize;
 
+  acceleration = 100.0;
+
   constructor(battlefield: Battlefield, team: Team, x: number, y: number) {
     super(battlefield, team, x, y, 0.001);
   }
@@ -30,7 +32,7 @@ export class ShotgunFighter extends Fighter {
 
   draw(): PaintBlock {
     const { x, y } = this;
-    return [super.draw(), { x: x - 2, y: y - 2, w: 4, h: 4, c: '#eeee00' }];
+    return [super.draw(), { x: x - 5, y: y - 5, w: 5, h: 5, c: 'white' }, { x: x, y: y, w: 5, h: 5, c: 'white' }];
   }
 }
 

@@ -60,12 +60,16 @@ export class Fighter extends Entity {
     const { acceleration, maxSpeed } = this;
     const { vx, vy } = this.velocity();
 
-    if (vx ** 2 + vy ** 2 > maxSpeed ** 2) {
-      angle = -Math.atan2(vx, vy);
-    }
-
     this.px += acceleration * dt * Math.cos(angle);
     this.py += acceleration * dt * Math.sin(angle);
+
+    if (vx ** 2 + vy ** 2 > maxSpeed ** 2) {
+      angle = Math.atan2(vy, vx);
+      console.log('MAX SPEED', vx ** 2 + vy ** 2, maxSpeed ** 2, angle, vx, vy);
+
+      this.px = maxSpeed * Math.cos(angle);
+      this.py = maxSpeed * Math.sin(angle);
+    }
   }
 
   fireWeapon(): Bullet | null {

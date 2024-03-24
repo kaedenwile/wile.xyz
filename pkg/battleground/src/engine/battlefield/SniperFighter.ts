@@ -7,7 +7,7 @@ export class SniperFighter extends Fighter {
   constructor(battlefield: Battlefield, team: Team, x: number, y: number) {
     super(battlefield, team, x, y, 5.0 + Math.random());
 
-    this.maxSpeed = 5.0;
+    this.maxSpeed = 100.0;
   }
 
   update(dt: number) {
@@ -21,7 +21,11 @@ export class SniperFighter extends Fighter {
 
   draw(): PaintBlock {
     const { x, y } = this;
-    return [super.draw(), { x: x - 2, y: y - 2, w: 4, h: 4, c: '#aaff77' }];
+    return [
+      super.draw(),
+      { x: x - 3, y: y - 3, w: 2, h: 6, c: 'white' },
+      { x: x + 1, y: y - 3, w: 2, h: 6, c: 'white' },
+    ];
   }
 }
 
