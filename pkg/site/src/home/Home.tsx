@@ -2,13 +2,14 @@ import './home.css';
 import { useState } from 'react';
 import { Battleground } from '@wile/battleground';
 
-import homeData from '../../data.json';
+import homeData from './data.json';
 import { HomeData } from './types.ts';
-import { HomeContent } from './HomeContent.tsx';
+import { NotionContent } from '../components';
 import { Link } from '@tanstack/react-router';
 
 export const Home = () => {
   const tabs = homeData as HomeData;
+  tabs.sort((a, b) => a.order - b.order);
 
   const [activeTab, setActiveTab] = useState(-1);
 
@@ -20,10 +21,10 @@ export const Home = () => {
 
         <div id="body">
           <div id="links">
-            {tabs.map(({ title, link }, i) => {
+            {tabs.map(({ name, link }, i) => {
               const commonProps = {
                 key: i,
-                children: title,
+                children: name,
               };
 
               if (link?.startsWith('https://')) {
@@ -43,7 +44,9 @@ export const Home = () => {
             })}
           </div>
           <div className="content-container">
-            <HomeContent content={tabs[activeTab]?.content} />
+            <div className="content">
+              <NotionContent content={tabs[activeTab]?.content} />
+            </div>
           </div>
         </div>
 

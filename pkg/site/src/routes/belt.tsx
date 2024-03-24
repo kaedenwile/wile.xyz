@@ -1,6 +1,5 @@
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router';
-
-import './belt.css';
+import '../belt/belt.css';
 
 export const Route = createFileRoute('/belt')({
   component: BeltLayout,
