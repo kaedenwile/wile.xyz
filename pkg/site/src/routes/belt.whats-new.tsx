@@ -7,8 +7,8 @@ export const Route = createFileRoute('/belt/whats-new')({
 });
 
 function BeltWhatsNew() {
-  const beltData = whatsNewData as BeltData;
-  beltData.sort((a, b) => b.version.localeCompare(a.version));
+  const beltData = whatsNewData as BeltData[];
+  beltData.sort((a, b) => b.version!.localeCompare(a.version!));
 
   return (
     <>

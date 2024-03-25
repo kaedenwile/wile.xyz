@@ -1,8 +1,8 @@
 import type { NotionBlock } from '@wile/notion-loader';
 
 export type HomeData = {
-  name: string;
-  order: number;
+  order: number | null;
   link: string | null;
+  name: string | null;
   content: NotionBlock[];
-}[];
+}

@@ -1,19 +1,24 @@
-import { queryNotionDatabase } from '@wile/notion-loader';
+import { genTypes, queryNotionDatabase } from '@wile/notion-loader';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { promises as fs } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// load home data
-const loadHomeData = async () => {
-  const homeData = await queryNotionDatabase(process.env.NOTION_HOME_DB_ID!);
-  await fs.writeFile(resolve(__dirname, '../src/home/data.json'), JSON.stringify(homeData));
+const loadData = async (databaseId: string, folder: string, typename: string) => {
+  await Promise.all([
+    (async () => {
+      const typeFile = await genTypes(databaseId, typename);
+      await fs.writeFile(resolve(__dirname, folder, 'types.gen.ts'), typeFile);
+    })(),
+    (async () => {
+      const data = await queryNotionDatabase(databaseId);
+      await fs.writeFile(resolve(__dirname, folder, 'data.json'), JSON.stringify(data));
+    })(),
+  ]);
 };
 
-const loadBeltData = async () => {
-  const data = await queryNotionDatabase(process.env.NOTION_BELT_DB_ID!);
-  await fs.writeFile(resolve(__dirname, '../src/belt/data.json'), JSON.stringify(data));
-};
-
-await Promise.all([loadHomeData(), loadBeltData()]);
+await Promise.all([
+  loadData(process.env.NOTION_HOME_DB_ID!, '../src/home/', 'HomeData'),
+  loadData(process.env.NOTION_BELT_DB_ID!, '../src/belt/', 'BeltData'),
+]);
