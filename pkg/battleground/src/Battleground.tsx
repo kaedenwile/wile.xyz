@@ -1,12 +1,12 @@
 import { CanvasHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { useWorker } from './useWorker.ts';
-import { gameEngine } from './engine';
+import { gameEngineCode } from './engine';
 import { PaintBlock, PaintMessage } from './types.ts';
 
 export type BattlegroundProps = CanvasHTMLAttributes<HTMLCanvasElement>;
 
 export const Battleground = ({ width = 500, height = 500, ...props }: BattlegroundProps) => {
-  const worker = useWorker(gameEngine, { paint });
+  const worker = useWorker(gameEngineCode, { paint });
 
   const [size, setSize] = useState({ width, height });
   const [didInit, setDidInit] = useState(false);

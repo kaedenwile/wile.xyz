@@ -65,7 +65,6 @@ export class Fighter extends Entity {
 
     if (vx ** 2 + vy ** 2 > maxSpeed ** 2) {
       angle = Math.atan2(vy, vx);
-      console.log('MAX SPEED', vx ** 2 + vy ** 2, maxSpeed ** 2, angle, vx, vy);
 
       this.px = maxSpeed * Math.cos(angle);
       this.py = maxSpeed * Math.sin(angle);
