@@ -35,7 +35,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn workspace site build
+        run: yarn build
 
       - name: Deploy
         run: yarn workspace site deploy

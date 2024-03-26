@@ -1,5 +1,6 @@
 import { createRootRouteWithContext, Outlet, useMatches } from '@tanstack/react-router';
 import { useEffect } from 'react';
+import { NotFound } from '../home/NotFound.tsx';
 
 export interface RouteContext {
   title?: string;
@@ -8,6 +9,7 @@ export interface RouteContext {
 export const Route = createRootRouteWithContext<RouteContext>()({
   beforeLoad: () => ({ title: 'wile.xyz' }),
   component: Root,
+  notFoundComponent: NotFound,
 });
 
 function Root() {

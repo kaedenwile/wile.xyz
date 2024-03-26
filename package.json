@@ -11,6 +11,7 @@
     "pkg/*"
   ],
   "scripts": {
+    "build": "yarn workspaces foreach -Rt --from site run build",
     "cdk": "yarn workspace infra cdk"
   },
   "devDependencies": {
