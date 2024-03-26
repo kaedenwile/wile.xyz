@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint  --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "sync": "yarn node --import=tsx --env-file=.env bin/loadNotionData.ts"
+    "sync": "yarn node --import=tsx --env-file=.env bin/loadNotionData.ts",
+    "deploy": "yarn node --import=tsx bin/deploy.ts"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.21.0",
@@ -17,6 +18,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@aws-sdk/client-cloudformation": "^3.540.0",
+    "@aws-sdk/client-cloudfront": "^3.540.0",
+    "@aws-sdk/client-s3": "^3.540.0",
     "@tanstack/router-devtools": "^1.21.0",
     "@tanstack/router-vite-plugin": "^1.20.5",
     "@types/react": "^18.2.56",

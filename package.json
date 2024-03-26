@@ -1,43 +1,21 @@
 {
-    "name": "wile.xyz",
-    "version": "1.1.0",
-    "private": true,
-    "repository": "https://github.com/kaedenwile/wile.xyz",
-    "author": "Kaeden Wile",
-    "license": "MIT",
-    "workspaces": [
-        "infra",
-        "website",
-        "pkg/*"
-    ],
-    "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.54.0",
-        "@typescript-eslint/parser": "^5.54.0",
-        "eslint": "^8.35.0",
-        "eslint-config-prettier": "^8.6.0",
-        "prettier": "2.8.4",
-        "typescript": "^5.2.2"
-    },
-    "eslintConfig": {
-        "env": {
-            "browser": true,
-            "node": true
-        },
-        "extends": [
-            "eslint:recommended",
-            "plugin:@typescript-eslint/recommended",
-            "prettier"
-        ],
-        "parser": "@typescript-eslint/parser",
-        "plugins": [
-            "@typescript-eslint"
-        ],
-        "ignorePatterns": "**/dist/**",
-        "root": true
-    },
-    "scripts": {
-        "lint": "eslint .",
-        "lint:fix": "eslint --fix ."
-    },
-    "packageManager": "yarn@4.1.1"
+  "name": "wile.xyz",
+  "version": "1.1.0",
+  "private": true,
+  "repository": "https://github.com/kaedenwile/wile.xyz",
+  "author": "Kaeden Wile",
+  "license": "MIT",
+  "workspaces": [
+    "infra",
+    "website",
+    "pkg/*"
+  ],
+  "scripts": {
+    "cdk": "yarn workspace infra cdk"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4",
+    "typescript": "^5.2.2"
+  },
+  "packageManager": "yarn@4.1.1"
 }
