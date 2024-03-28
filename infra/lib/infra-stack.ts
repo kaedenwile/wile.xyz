@@ -55,12 +55,16 @@ export class InfraStack extends Stack {
     new Policy(this, 'DeploymentPolicy', {
       statements: [
         new PolicyStatement({
-          actions: ['cloudformation:DescribeStackResources'],
+          actions: ['cloudformation:DescribeStackResources', 'cloudformation:DescribeStacks'],
           resources: [this.stackId],
         }),
         new PolicyStatement({
           actions: ['s3:ListBucket', 's3:PutObject', 's3:PutObjectAcl', 's3:DeleteObject'],
           resources: [websiteBucket.bucketArn, Fn.join('/', [websiteBucket.bucketArn, '*'])],
+        }),
+        new PolicyStatement({
+          actions: ['cloudfront:CreateInvalidation'],
+          resources: [Fn.join('/', ['arn:aws:cloudfront::***:distribution', websiteDistribution.distributionId])],
         }),
       ],
     }).attachToUser(deploymentUser);
