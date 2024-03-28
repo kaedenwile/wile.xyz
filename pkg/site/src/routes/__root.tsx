@@ -4,6 +4,7 @@ import { NotFound } from '../home/NotFound.tsx';
 
 export interface RouteContext {
   title?: string;
+  bodyClass?: string;
 }
 
 export const Route = createRootRouteWithContext<RouteContext>()({
@@ -21,6 +22,12 @@ function Root() {
         .reverse()
         .map((d) => d.context.title)
         .find(Boolean) || 'wile.xyz';
+
+    document.body.className =
+      [...matches]
+        .reverse()
+        .map((d) => d.context.bodyClass)
+        .find(Boolean) || 'home';
   }, [matches]);
 
   return (

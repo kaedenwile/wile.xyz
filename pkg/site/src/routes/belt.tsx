@@ -3,7 +3,7 @@ import '../belt/belt.css';
 
 export const Route = createFileRoute('/belt')({
   component: BeltLayout,
-  beforeLoad: () => ({ title: 'wile.xyz ~ BELT' }),
+  beforeLoad: () => ({ title: 'wile.xyz ~ BELT', bodyClass: 'belt' }),
 });
 
 function BeltLayout() {

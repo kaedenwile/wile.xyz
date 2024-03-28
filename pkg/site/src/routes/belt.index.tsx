@@ -21,7 +21,7 @@ function Belt() {
           </div>
 
           <a className="download" href="https://apps.apple.com/app/id1574113584">
-            <img src="/img/download_on_app_store.png" alt="Download on the Apple App Store" />
+            <img src="/img/download_ios_white.png" alt="Download on the Apple App Store" />
           </a>
 
           <a onClick={() => setIsShowingHome(false)}>Learn More</a>
