@@ -28,6 +28,8 @@ const uploadToS3 = async (folder: string, bucketName: string) => {
       return 'application/javascript';
     } else if (file.endsWith('.css')) {
       return 'text/css';
+    } else if (file.endsWith('.svg')) {
+      return 'image/svg+xml';
     }
   };
 
