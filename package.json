@@ -7,7 +7,6 @@
   "license": "MIT",
   "workspaces": [
     "infra",
-    "website",
     "pkg/*"
   ],
   "scripts": {
