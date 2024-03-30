@@ -210,18 +210,18 @@ body.belt {
       }
     }
   }
+}
 
-  @keyframes bullet {
-    0% {
-    }
+@keyframes bullet {
+  0% {
+  }
 
-    80% {
-      opacity: 100%;
-    }
+  80% {
+    opacity: 100%;
+  }
 
-    100% {
-      transform: translate3D(400px, -400px, 0) rotate(-45deg);
-      opacity: 0;
-    }
+  100% {
+    transform: translate3D(400px, -400px, 0) rotate(-45deg);
+    opacity: 0;
   }
 }
