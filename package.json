@@ -10,7 +10,9 @@
     "pkg/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -Rt --from site run build",
+    "dev": "yarn workspace site dev",
+    "build": "yarn workspace site sync && yarn workspaces foreach -Rt --from site run build",
+    "deploy": "yarn workspace site deploy",
     "cdk": "yarn workspace infra cdk"
   },
   "devDependencies": {
