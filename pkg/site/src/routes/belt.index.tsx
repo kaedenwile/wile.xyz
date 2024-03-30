@@ -15,8 +15,8 @@ function Belt() {
           <div className="scene">
             <div className="bullet"></div>
             <div className="ship">
-              <img className="shuttle" src="/img/belt_ship.png" alt="spaceship" />
-              <img className="exhaust" src="/img/belt_exhaust.gif" alt="exhaust" />
+              <img draggable="false" className="shuttle" src="/img/belt_ship.png" alt="spaceship" />
+              <img draggable="false" className="exhaust" src="/img/belt_exhaust.gif" alt="exhaust" />
             </div>
           </div>
 
