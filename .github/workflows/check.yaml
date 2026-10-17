@@ -1,0 +1,24 @@
+name: Check Website
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
+      - run: yarn workspaces foreach -A run lint
+      - run: yarn workspace infra exec tsc --noEmit
+      - run: yarn workspace @wile/notion-loader exec tsc --noEmit
+      - run: yarn npm audit --all --recursive

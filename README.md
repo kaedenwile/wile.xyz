@@ -18,6 +18,8 @@ Additionally, there is a `.github` folder that defines workflows.
 
 ## Getting Started
 
+Use Node.js 22.13+ (or 24+) and the repository-pinned Yarn 4.18.1. TypeScript stays on 6.0 because the current typescript-eslint release does not support TypeScript 7.
+
 After downloading the repo and running `yarn install`, you can launch the website by running:
 ```shell
 yarn dev

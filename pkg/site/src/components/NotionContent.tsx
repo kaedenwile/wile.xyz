@@ -17,7 +17,7 @@ export const NotionContent = ({ content }: NotionContentProps) => {
       if ((children[children.length - 1] as ReactElement)?.type === 'ul') {
         children.push(
           <ul key={block.id + '-ul'}>
-            {(children.pop() as ReactElement).props.children}
+            {(children.pop() as ReactElement<{ children?: ReactNode }>).props.children}
             {element}
           </ul>
         );
