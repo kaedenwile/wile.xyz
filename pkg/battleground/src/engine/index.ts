@@ -1,24 +1,43 @@
-import { InitMessage, ResizeMessage } from '../types.ts';
-import { Battlefield } from './battlefield';
-
-export declare const gameEngineCode: string; // populated by esbuild
-
+import { DroneSimulation } from '../droneSimulation';
+export declare const gameEngineCode: string;
 export const gameEngine = () => {
-  let game: Battlefield;
-
-  const handlers = {
-    init: ({ width, height }: InitMessage) => {
-      game = new Battlefield(width, height);
-      game.gameLoop();
-    },
-    resize: ({ width, height }: ResizeMessage) => {
-      game.resize(width, height);
-    },
+  let game: DroneSimulation | undefined;
+  let timer: ReturnType<typeof setInterval> | undefined;
+  const paint = () => {
+    if (game) self.postMessage({ type: 'paint', scene: game.scene });
   };
-
-  self.addEventListener('message', (event: MessageEvent) => {
-    const { data } = event;
-
-    handlers[data.type as keyof typeof handlers]?.(data);
+  const stop = () => {
+    clearInterval(timer);
+    timer = undefined;
+  };
+  const start = () => {
+    if (timer !== undefined) return;
+    timer = setInterval(() => {
+      game?.update(1 / 30);
+      paint();
+    }, 1000 / 30);
+  };
+  self.addEventListener('message', ({ data }) => {
+    switch (data.type) {
+      case 'init':
+        stop();
+        game = new DroneSimulation(data.width, data.height);
+        paint();
+        if (!data.paused) start();
+        break;
+      case 'resize':
+        game?.resize(data.width, data.height);
+        paint();
+        break;
+      case 'pointer':
+        if (game) game.scene.pointer = data.point;
+        break;
+      case 'pause':
+        if (data.paused) {
+          stop();
+          paint();
+        } else start();
+        break;
+    }
   });
 };

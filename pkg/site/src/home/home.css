@@ -150,3 +150,40 @@ body.home {
     }
   }
 }
+/* Keep the simulation behind the page and preserve quiet space for reading. */
+body.home {
+  background: #10171e;
+  .battleground { width: 100%; height: 100%; pointer-events: none; }
+  #website { pointer-events: none; }
+  #website a, #website button, #website .content { pointer-events: auto; }
+  #website h1 { text-shadow: 0 2px 18px #10171e; }
+  #website #body #links {
+    padding: 0.5rem 0;
+    background: linear-gradient(90deg, #10171ee6, #10171e00);
+  }
+  #website #body .content-container:has(.content:not(:empty)) {
+    background: radial-gradient(ellipse at center, #10171ef2 20%, #10171eb3 65%, transparent 90%);
+  }
+  #website #body .content-container .content { text-shadow: 0 1px 5px #10171e; }
+  #website #footer { padding-bottom: 2.5rem; }
+  .simulation-toggle {
+    position: fixed;
+    bottom: 0.8rem;
+    left: 1rem;
+    z-index: 2;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid #8fa4b530;
+    border-radius: 5px;
+    color: #a8b8c4;
+    background: #10171ed9;
+    font: 11px 'Source Code Pro', monospace;
+    cursor: pointer;
+    transition: border-color 150ms, color 150ms;
+    &:hover { color: #e1e9ed; border-color: #8fa4b570; }
+    &:focus-visible { outline: 2px solid #68b9b0; outline-offset: 3px; }
+    &:disabled { cursor: default; opacity: 0.6; }
+  }
+}

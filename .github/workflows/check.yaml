@@ -18,6 +18,7 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn build
+      - run: yarn workspace site exec tsx --test ../battleground/tests/simulation.test.ts
       - run: yarn workspaces foreach -A run lint
       - run: yarn workspace infra exec tsc --noEmit
       - run: yarn workspace @wile/notion-loader exec tsc --noEmit
