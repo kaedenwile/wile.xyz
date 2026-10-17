@@ -6,8 +6,6 @@ body.belt {
   --ship-x: calc(50% - 10rem);
   --ship-y: 15rem;
 
-  --breakpoint-mobile: 768px;
-
   background-color: var(--dark-black);
   height: 100%;
   max-height: 100%;
@@ -39,7 +37,7 @@ body.belt {
       padding: 2rem 0 1rem 0;
 
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         padding-top: 4rem;
       }
 
@@ -168,7 +166,7 @@ body.belt {
 
     #footer {
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         margin-top: 1rem;
       }
 
@@ -196,7 +194,7 @@ body.belt {
       margin: 1.5rem 0 1rem 0;
 
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         margin: 2rem 0;
       }
 

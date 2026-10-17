@@ -28,7 +28,6 @@ export class Entity {
   // eslint-disable-next-line
   update(dt: number): void {}
 
-  // eslint-disable-next-line
   didHitWall(): void {}
 
   // properties

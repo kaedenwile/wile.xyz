@@ -2,8 +2,6 @@ body.colony {
   --tan: #f9f8eb;
   --gray: #545454;
 
-  --breakpoint-mobile: 768px;
-
   background-color: var(--tan);
   height: 100%;
   min-height: 100%;
@@ -33,7 +31,7 @@ body.colony {
       padding: 2rem 0 0 0;
 
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         padding-top: 3rem;
       }
 
@@ -87,7 +85,7 @@ body.colony {
 
     #footer {
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         margin-top: 1rem;
       }
 
@@ -116,7 +114,7 @@ body.colony {
       margin: 1.5rem 0 1rem 0;
 
       /** DESKTOP **/
-      @media (min-width: var(--breakpoint-mobile)) {
+      @media (min-width: 768px) {
         margin: 2rem 0;
       }
 

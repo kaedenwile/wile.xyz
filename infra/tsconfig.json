@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
-    "lib": ["es2018"],
+    "module": "Node16",
+    "lib": [
+      "es2020",
+      "esnext.disposable"
+    ],
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -17,8 +20,19 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "typeRoots": ["../node_modules/@types"]
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "Node16"
   },
-  "include": ["bin/*", "lib/*"],
-  "exclude": ["cdk.out"]
+  "include": [
+    "bin/*",
+    "lib/*"
+  ],
+  "exclude": [
+    "cdk.out"
+  ]
 }

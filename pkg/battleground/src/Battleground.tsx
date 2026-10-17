@@ -12,7 +12,7 @@ export const Battleground = ({ width = 500, height = 500, ...props }: Battlegrou
   const [didInit, setDidInit] = useState(false);
   const [hasCanvas, setHasCanvas] = useState(false);
 
-  const canvasRef = useRef<HTMLCanvasElement | null>();
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (!worker || !hasCanvas || didInit) return;
