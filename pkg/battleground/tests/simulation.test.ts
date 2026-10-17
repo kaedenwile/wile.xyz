@@ -10,13 +10,13 @@ test('a long-running battle remains finite, bounded, and captures objectives', (
     if (i === 3000) game.scene.pointer = { x: 600, y: 400 };
     if (i === 3600) game.scene.pointer = null;
     captured ||= game.scene.beacons.some((b) => Math.abs(b.control) > 0.9);
-    assert.ok(game.scene.shots.length <= 48);
+    assert.ok(game.scene.shots.length <= 80);
     for (const d of game.scene.drones) {
       assert.ok([d.x, d.y, d.vx, d.vy, d.angle, d.health].every(Number.isFinite));
       assert.ok(d.x >= 0 && d.x <= 1200 && d.y >= 0 && d.y <= 800);
     }
   }
-  assert.equal(game.scene.drones.length, 24);
+  assert.equal(game.scene.drones.length, 32);
   assert.ok(captured);
 });
 
@@ -54,7 +54,7 @@ test('capture is contested and medics restore allied health', () => {
 
 test('mobile and resize keep a bounded population and normalized beacon positions', () => {
   const game = new DroneSimulation(390, 844);
-  assert.equal(game.scene.drones.length, 12);
+  assert.equal(game.scene.drones.length, 16);
   game.scene.pointer = { x: 100, y: 200 };
   game.resize(844, 390);
   assert.equal(game.scene.pointer, null);
@@ -87,7 +87,7 @@ test('bundled worker initializes, advances, pauses, and resizes', async () => {
     },
   });
   handler!({ data: { type: 'init', width: 1200, height: 800, paused: true } });
-  assert.equal(last!.scene.drones.length, 24);
+  assert.equal(last!.scene.drones.length, 32);
   assert.equal(tick, undefined);
   handler!({ data: { type: 'pause', paused: false } });
   const x = last!.scene.drones[0].x;

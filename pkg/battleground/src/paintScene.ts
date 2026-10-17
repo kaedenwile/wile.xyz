@@ -58,43 +58,65 @@ export function paintScene(ctx: CanvasRenderingContext2D, scene: Scene, ratio: n
     ctx.save();
     ctx.translate(d.x, d.y);
     ctx.rotate(d.angle);
-    ctx.globalAlpha = 0.68;
+    ctx.scale(1.8, 1.8);
+    ctx.globalAlpha = 0.95;
     ctx.fillStyle = color;
     ctx.strokeStyle = color;
+    // Each class has a distinct silhouette, not just a tiny interior marking.
+    const outlines = [
+      [
+        [10, 0],
+        [-6, -4],
+        [-2, 0],
+        [-6, 4],
+      ],
+      [
+        [8, 0],
+        [-5, -7],
+        [-3, -1],
+        [-7, 0],
+        [-3, 1],
+        [-5, 7],
+      ],
+      [
+        [8, 0],
+        [3, -6],
+        [-7, -6],
+        [-7, -2],
+        [-4, 0],
+        [-7, 2],
+        [-7, 6],
+        [3, 6],
+      ],
+      [
+        [6, 0],
+        [2, -6],
+        [-5, -6],
+        [-8, 0],
+        [-5, 6],
+        [2, 6],
+      ],
+    ];
     ctx.beginPath();
-    if (d.role === 2) {
-      ctx.moveTo(7, 0);
-      ctx.lineTo(1, -5);
-      ctx.lineTo(-5, -4);
-      ctx.lineTo(-3, 0);
-      ctx.lineTo(-5, 4);
-      ctx.lineTo(1, 5);
-    } else {
-      ctx.moveTo(d.role === 0 ? 8 : 6, 0);
-      ctx.lineTo(-5, -4);
-      ctx.lineTo(-2, 0);
-      ctx.lineTo(-5, 4);
-    }
+    outlines[d.role].forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
     ctx.closePath();
     ctx.fill();
-    ctx.fillStyle = '#d9e5e7';
-    ctx.globalAlpha = 0.7;
-    ctx.fillRect(0, -1, 2, 2);
+    ctx.globalAlpha = 0.9;
+    ctx.fillStyle = '#e3eff2';
     if (d.role === 3) {
-      ctx.strokeStyle = '#c6e0d6';
-      ctx.beginPath();
-      ctx.moveTo(-3, 0);
-      ctx.lineTo(3, 0);
-      ctx.moveTo(0, -3);
-      ctx.lineTo(0, 3);
-      ctx.stroke();
+      ctx.fillRect(-4, -1, 6, 2);
+      ctx.fillRect(-2, -3, 2, 6);
+    } else {
+      ctx.fillRect(0, -1, 3, 2);
     }
+    // Twin engines make the heavy profile readable even while turning.
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.45;
+    if (d.role === 2) {
+      ctx.fillRect(-10, -5, 3, 2);
+      ctx.fillRect(-10, 3, 3, 2);
+    } else ctx.fillRect(-8, -1, 3, 2);
     ctx.restore();
-    if (d.health < 0.8) {
-      ctx.globalAlpha = 0.3;
-      ctx.fillStyle = color;
-      ctx.fillRect(d.x - 5, d.y + 9, 10 * Math.max(0, d.health), 1);
-    }
     if (d.role === 3) {
       const ally = scene.drones.find(
         (o) =>
@@ -114,17 +136,17 @@ export function paintScene(ctx: CanvasRenderingContext2D, scene: Scene, ratio: n
       }
     }
   }
-  ctx.lineWidth = 1.2;
+  ctx.lineWidth = 1.8;
   for (const p of scene.shots) {
-    ctx.globalAlpha = Math.min(0.55, p.life);
+    ctx.globalAlpha = Math.min(0.9, p.life * 2);
     ctx.strokeStyle = colors[p.team];
     ctx.beginPath();
-    ctx.moveTo(p.x - p.vx * 0.025, p.y - p.vy * 0.025);
+    ctx.moveTo(p.x - p.vx * 0.04, p.y - p.vy * 0.04);
     ctx.lineTo(p.x, p.y);
     ctx.stroke();
   }
   for (const p of scene.pulses) {
-    ctx.globalAlpha = (1 - p.age / 1.4) * 0.35;
+    ctx.globalAlpha = (1 - p.age / 1.4) * 0.65;
     ctx.strokeStyle = colors[p.team];
     ctx.lineWidth = 1;
     ctx.beginPath();

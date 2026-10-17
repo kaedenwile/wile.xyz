@@ -33,7 +33,7 @@ export class DroneSimulation {
   constructor(width: number, height: number) {
     this.scene = { width, height, drones: [], shots: [], pulses: [], beacons: [], pointer: null };
     this.resize(width, height);
-    const count = width < 650 ? 12 : 24;
+    const count = width < 650 ? 16 : 32;
     for (let id = 0; id < count; id++) {
       const team = id % 2;
       const slot = Math.floor(id / 2);
@@ -100,12 +100,12 @@ export class DroneSimulation {
       const enemy = alive
         .filter((o) => o.team !== d.team)
         .sort((a, b) => Math.hypot(a.x - d.x, a.y - d.y) - Math.hypot(b.x - d.x, b.y - d.y))[0];
-      const target = s.beacons[(d.squad + Math.floor(this.time / 24) + d.team) % 3];
+      const target = s.beacons[(d.squad + Math.floor(this.time / 14) + d.team) % 3];
       let tx = target.x,
         ty = target.y;
       // Scouts take a flanking arc; heavy units hold the perimeter.
       const orbit = d.role === 0 ? 70 : d.role === 2 ? 48 : 28;
-      tx += Math.cos(this.time * 0.16 + d.id * 1.7) * orbit;
+      tx += Math.cos(this.time * 0.4 + d.id * 1.7) * orbit;
       ty += Math.sin(this.time * 0.16 + d.id * 1.7) * orbit;
       if (d.role === 3) {
         const injured = allies.filter((o) => o.health < 0.85).sort((a, b) => a.health - b.health)[0];
@@ -115,8 +115,8 @@ export class DroneSimulation {
           if (Math.hypot(tx - d.x, ty - d.y) < 65) injured.health = Math.min(1, injured.health + dt * 0.1);
         }
       }
-      let ax = (tx - d.x) * 0.3,
-        ay = (ty - d.y) * 0.3;
+      let ax = (tx - d.x) * 0.65,
+        ay = (ty - d.y) * 0.65;
       for (const o of allies) {
         const dx = d.x - o.x,
           dy = d.y - o.y,
@@ -132,9 +132,18 @@ export class DroneSimulation {
       }
       if (enemy && d.role !== 3) {
         const dist = Math.hypot(enemy.x - d.x, enemy.y - d.y);
-        if (dist < 100) {
-          ax -= (enemy.x - d.x) * 0.7;
-          ay -= (enemy.y - d.y) * 0.7;
+        // Engage enemies rather than settling into isolated beacon orbits.
+        if (dist < 420) {
+          const preferred = d.role === 0 ? 65 : d.role === 2 ? 190 : 110;
+          const approach = ((dist - preferred) * 0.7) / Math.max(1, dist);
+          ax += (enemy.x - d.x) * approach;
+          ay += (enemy.y - d.y) * approach;
+          // Scouts and fighters strafe while heavy ships hold firing distance.
+          if (d.role !== 2) {
+            const strafe = (d.id % 2 ? 1 : -1) * 22;
+            ax += (-(enemy.y - d.y) / Math.max(1, dist)) * strafe;
+            ay += ((enemy.x - d.x) / Math.max(1, dist)) * strafe;
+          }
         }
       }
       if (s.pointer) {
@@ -150,7 +159,7 @@ export class DroneSimulation {
       // Soft walls turn drones before they reach the edge.
       ax += Math.max(0, 45 - d.x) * 2 - Math.max(0, d.x - s.width + 45) * 2;
       ay += Math.max(0, 45 - d.y) * 2 - Math.max(0, d.y - s.height + 45) * 2;
-      const max = d.role === 0 ? 57 : d.role === 2 ? 30 : 43;
+      const max = d.role === 0 ? 110 : d.role === 2 ? 62 : 86;
       d.vx = (d.vx + ax * dt) * Math.exp(-dt * 0.7);
       d.vy = (d.vy + ay * dt) * Math.exp(-dt * 0.7);
       const speed = Math.hypot(d.vx, d.vy);
@@ -165,20 +174,20 @@ export class DroneSimulation {
       d.trail.push({ x: d.x, y: d.y });
       if (d.trail.length > 12) d.trail.shift();
       d.cooldown -= dt;
-      if (enemy && d.role !== 3 && d.cooldown <= 0 && s.shots.length < 48) {
+      if (enemy && d.role !== 3 && d.cooldown <= 0 && s.shots.length < 80) {
         const dist = Math.hypot(enemy.x - d.x, enemy.y - d.y);
-        if (dist < (d.role === 2 ? 260 : 180)) {
-          const lead = dist / 260;
+        if (dist < (d.role === 2 ? 400 : 300)) {
+          const lead = dist / 380;
           const angle = Math.atan2(enemy.y + enemy.vy * lead - d.y, enemy.x + enemy.vx * lead - d.x);
           s.shots.push({
             x: d.x,
             y: d.y,
-            vx: Math.cos(angle) * 260,
-            vy: Math.sin(angle) * 260,
+            vx: Math.cos(angle) * 380,
+            vy: Math.sin(angle) * 380,
             team: d.team,
-            life: 1.1,
+            life: 1.3,
           });
-          d.cooldown = (d.role === 2 ? 2.8 : 1.8) + Math.random() * 1.4;
+          d.cooldown = (d.role === 2 ? 0.7 : 0.35) + Math.random() * 0.5;
         }
       }
     }
@@ -201,11 +210,11 @@ export class DroneSimulation {
         const dx = shot.x - ox,
           dy = shot.y - oy;
         const t = clamp(((d.x - ox) * dx + (d.y - oy) * dy) / (dx * dx + dy * dy || 1), 0, 1);
-        if (Math.hypot(d.x - ox - dx * t, d.y - oy - dy * t) < 9) {
+        if (Math.hypot(d.x - ox - dx * t, d.y - oy - dy * t) < 14) {
           d.health -= 0.24;
           shot.life = 0;
           s.pulses.push({ x: d.x, y: d.y, age: 0, team: d.team });
-          if (d.health <= 0) d.respawn = 3 + Math.random() * 2;
+          if (d.health <= 0) d.respawn = 1.5 + Math.random() * 1.5;
         }
       }
     }
